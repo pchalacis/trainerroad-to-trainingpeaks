@@ -28,3 +28,4 @@ This code allows you to copy trainer road training plan into your training peaks
 
 #Bugs and feature requests
 1. Sorry, works for me, use at will. Found a bug? Create a pull request. Feature request? Make it yourself, I'm busy training ;)
+2. Code was tested on 2 TP accounts, under Chrome and Safari.
