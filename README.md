@@ -4,13 +4,13 @@ This code allows you to copy trainer road training plan into your training peaks
 ## Step by step instructions:
 1. login to your Trainer Road account, and open the plan. (Go to training plans, select phase and plan...). 
 2. If you're viewing triathlon plan, you have to open weekly tips for every week (just click on week tips for each week).
-3. Open (https://raw.githubusercontent.com/pchalacis/trainerroad-to-trainingpeaks/master/minimised/trainerroad.js) this file and copy it's content. 
+3. Open (https://raw.githubusercontent.com/pchalacis/trainerroad-to-trainingpeaks/master/minimised/trainerroad.js)[this file] and copy it's content. 
 4. On your Trainer Road window, open javascript console (for eaxample, for Chrome view -> developer -> javascript console).
 5. In the console, paste content of the file from step 3.
 6. In the output you'll get a blob of text. Select and copy it. 
 7. Login to your Training Peaks account
 8. Open javascript console and paste what you copied in step 6.
-9. Open (https://raw.githubusercontent.com/pchalacis/trainerroad-to-trainingpeaks/master/minimised/trainingpeaks.js) this file and copy it's content. 
+9. Open (https://raw.githubusercontent.com/pchalacis/trainerroad-to-trainingpeaks/master/minimised/trainingpeaks.js)[this file] and copy it's content. 
 10. Paste it to the Training Peaks window console.
 11. You will be asked for the date  when you want to start the plan
 12. Enter the date, hit ok, wait 10 or 20 seconds and then refresh the page. all workouts should be there.
