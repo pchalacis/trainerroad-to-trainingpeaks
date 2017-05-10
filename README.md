@@ -16,7 +16,7 @@ This code allows you to copy trainer road training plan into your training peaks
 12. Enter the date, hit ok, wait 10 or 20 seconds and then refresh the page. all workouts should be there.
 
 
-#few notes
+# few notes
 1. Script does estimate TSS for swim and run workouts. That esitmation might be WAY off, but there is no other way to figure it out. It gives real TSS for bike workouts.
 2. You need premium Training Peaks account, or at least the initial 7 days trial to be able to put workouts in the future
 3. If you mess the date or run the code twice, you will get duplicate workouts.
@@ -26,6 +26,6 @@ This code allows you to copy trainer road training plan into your training peaks
 7. I take no responsibility if you mess up your plan, use at will.
 8. No, I will not post Trainer Road plans here, this script is to make your life easier if you use both, not to get yourself a free training plan.
 
-#Bugs and feature requests
+# Bugs and feature requests
 1. Sorry, works for me, use at will. Found a bug? Create a pull request. Feature request? Make it yourself, I'm busy training ;)
 2. Code was tested on 2 TP accounts, under Chrome and Safari.
