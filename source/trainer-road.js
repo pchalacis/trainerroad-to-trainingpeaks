@@ -27,10 +27,6 @@
 
 
 	$(weekElement).each(function (row) {
-		
-
-
-
 		$(this).find('div.td').each(function (bikeday) {
 			if ($(this).hasClass('week-info') || $(this).hasClass('empty')) {
 				return true;
@@ -49,12 +45,11 @@
 				'type': 'bike',
 				'title': $(this).find('.plan-workout-info h4').text(),
 				'description': 'url: ' + $(this).find('.plan-workout-info h4 a').prop('href'),
-				'duration': $($(this).find('.data-stat:nth-child(1)')[0]).text(),
-				'tss': $($(this).find('.data-stat:nth-child(1)')[1]).text(),
-				'if': $($(this).find('.data-stat:nth-child(1)')[2]).text()
+				'duration': $($(this).find('.plan-workout-info div div:nth-child(1) span.data-group__stat')[0]).text(),
+				'tss': $($(this).find('.plan-workout-info div div:nth-child(2) span.data-group__stat')[0]).text(),
+				'if': $($(this).find('.plan-workout-info div tr-intensity-stat div.data-group__stat.ng-star-inserted')[0]).text().replace(/[ \n]/g, '')
 			})
 		});
-
 
 		/*extra workouts outside of bike + tips */
 		$(this).find('.plan-day').each(function (day) {
