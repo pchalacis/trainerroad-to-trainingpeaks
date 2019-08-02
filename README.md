@@ -12,6 +12,7 @@ This code allows you to copy trainer road workout into your training peaks accou
 8. Open javascript console and paste what you have in the clipboard
 9. done.
 
+
 #how to get library ID from Training Peaks:
 1. login to training peaks
 2. open javascript console
@@ -31,6 +32,7 @@ This code allows you to copy trainer road workout into your training peaks accou
 6. If you don't trust javascript code, don't use it. There is no phishing and the source is available in /source. 
 7. I take no responsibility for hte script. use at will.
 8. No, I will not post Trainer Road plans here, this script is to make your life easier if you use both, not to get yourself a free training plan.
+9. If you want to make your life easier - create a bookmarklet with the code from step 3
 
 # Bugs and feature requests
 1. Sorry, works for me, use at will. Found a bug? Create a pull request. Feature request? Make it yourself, I'm busy training ;)
