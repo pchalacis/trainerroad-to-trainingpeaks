@@ -10,7 +10,8 @@ This code allows you to copy trainer road workout into your training peaks accou
 5a. enter your workout library ID from Training Peaks
 7. Login to your Training Peaks account
 8. Open javascript console and paste what you have in the clipboard
-9. done.
+9. Refresh TrainingPeaks page. your workout will be in the library. 
+9a. you don't have to refresh the page every time - you can add multiple workouts without refreshing.
 
 
 #how to get library ID from Training Peaks:
@@ -33,6 +34,7 @@ This code allows you to copy trainer road workout into your training peaks accou
 7. I take no responsibility for hte script. use at will.
 8. No, I will not post Trainer Road plans here, this script is to make your life easier if you use both, not to get yourself a free training plan.
 9. If you want to make your life easier - create a bookmarklet with the code from step 3
+10. if you always import workouts to the same library, add `var libId=1354831; ` at the begining of the bookmarkled, right after `javascript:(function(){`.
 
 # Bugs and feature requests
 1. Sorry, works for me, use at will. Found a bug? Create a pull request. Feature request? Make it yourself, I'm busy training ;)
