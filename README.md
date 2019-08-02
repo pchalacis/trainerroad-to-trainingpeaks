@@ -2,8 +2,8 @@
 This code allows you to copy trainer road workout into your training peaks account.
 
 ## Step by step instructions:
-1. login to your Trainer Road account, and open the workout. example: https://www.trainerroad.com/cycling/workouts/20725-bald-knob
-2. If you're viewing triathlon plan, you have to open weekly tips for every week (just click on week tips for each week).
+1. login to your Trainer Road account, 
+2. open the workout. example: https://www.trainerroad.com/cycling/workouts/20725-bald-knob
 3. Open https://raw.githubusercontent.com/pchalacis/trainerroad-to-trainingpeaks/master/minimised/trainerroad.js file and copy it's content. 
 4. On your Trainer Road window, open javascript console (for eaxample, for Chrome view -> developer -> javascript console).
 5. In the console, paste content of the file from step 3.
