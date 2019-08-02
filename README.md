@@ -14,7 +14,7 @@ This code allows you to copy trainer road workout into your training peaks accou
 9a. you don't have to refresh the page every time - you can add multiple workouts without refreshing.
 
 
-#how to get library ID from Training Peaks:
+## how to get library ID from Training Peaks:
 1. login to training peaks
 2. open javascript console
 3. switch to "network" tab"
@@ -26,7 +26,7 @@ This code allows you to copy trainer road workout into your training peaks accou
 
 
 
-# few notes
+## few notes
 1. You need premium Training Peaks account, or at least the initial 7 days trial to be able to put workouts in the future
 2. Script creates workout with the power profile, but ignores slopes
 3. Script ignores any notes
@@ -36,6 +36,6 @@ This code allows you to copy trainer road workout into your training peaks accou
 9. If you want to make your life easier - create a bookmarklet with the code from step 3
 10. if you always import workouts to the same library, add `var libId=XXXX; ` at the begining of the bookmarkled, right after `javascript:(function(){`. (XXXX is your library ID)
 
-# Bugs and feature requests
+## Bugs and feature requests
 1. Sorry, works for me, use at will. Found a bug? Create a pull request. Feature request? Make it yourself, I'm busy training ;)
 2. Code was tested on 2 TP accounts, under Chrome.
