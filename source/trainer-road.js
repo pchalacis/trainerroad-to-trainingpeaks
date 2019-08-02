@@ -1,106 +1,91 @@
-(function exporter() {
-	var plan = {},
-		weekElement,
-		i = 1,
+var url = "https://www.trainerroad.com/api/workoutdetails/" + document.location.href.split('/').pop().split('-')[0]
 
-		days = {
-			'mon': 'monday',
-			'tue': 'tuesday',
-			'wed': 'wednesday',
-			'thu': 'thursday',
-			'fri': 'friday',
-			'sat': 'saturday',
-			'sun': 'sunday'
+if (libId === undefined) {
+	var libId = prompt("library", libId)
+}
+
+fetch(url, {credentials: "include"}).then(res => res.json())
+.then(function (json) {
+	
+
+var structure = [],
+	end = 0;
+
+	testInterval = false;
+
+
+	var intervalData = json.Workout.intervalData;
+
+for (var i = 1; i < intervalData.length; i++) {
+	if (intervalData[i].TestInterval) {
+		testInterval = intervalData[i];
+		break;
+	}
+}
+
+for (var i = 1; i < intervalData.length; i++) {
+	if (testInterval && testInterval.Name !== intervalData[i].Name) {
+		if (intervalData[i].Start >= testInterval.Start && 
+			intervalData[i].End <= testInterval.End) {
+			continue;
 		}
-
-
-
-	if ($('tr-plan-record-week').length > 0) {
-		weekElement = 'tr-plan-record-week';
-	} else 	if ($('tr-plan-week').length > 0) {
-		weekElement = 'tr-plan-week';
-	} else {
-		console.log('there page you\'re at has no workouts');
-		return 1;
 	}
 
 
 
-	$(weekElement).each(function (row) {
-		
+	var ic = 'warmUp';
+	if (i == 1) { ic = 'warmUp'; }
+	else if (i === intervalData.length) { ic = 'coolDown' }
+	else if (intervalData[i].StartTargetPowerPercent > 60) { ic = 'active'; } 	
+	else { ic = 'rest'; }
+
+//	console.log(intervalData[i]);
+
+	if (intervalData[i].Name === 'Fake' && i === 1) {
+		intervalData[i].Name = 'Warm up';
+	} else if (intervalData[i].Name === 'Fake') {
+		intervalData[i].Name = 'Recovery';
+	}
+
+	end = intervalData[i].End;
+
+	structure.push ({ "type":"step", "length":{"value":1, "unit":"repetition"}, "steps":[ { "name":intervalData[i].Name, "length": {"value":intervalData[i].End - intervalData[i].Start, "unit":"second"}, "targets":[{"minValue":intervalData[i].StartTargetPowerPercent}], "intensityClass": ic } ], "begin":intervalData[i].Start, "end":intervalData[i].End }); 
 
 
-
-		$(this).find('div.td').each(function (bikeday) {
-			if ($(this).hasClass('week-info') || $(this).hasClass('empty')) {
-				return true;
-			} 
-
-			if (plan[i] === undefined) {
-				plan[i] = {};
-			}
-
-			if (plan[i][days[$(this).prop('class').replace('td ', '')]] === undefined) {
-				plan[i][days[$(this).prop('class').replace('td ', '')]] = [];
-			}
+	
 
 
-			plan[i][days[$(this).prop('class').replace('td ', '')]].push({
-				'type': 'bike',
-				'title': $(this).find('.plan-workout-info h4').text(),
-				'description': 'url: ' + $(this).find('.plan-workout-info h4 a').prop('href'),
-				'duration': $($(this).find('.data-stat:nth-child(1)')[0]).text(),
-				'tss': $($(this).find('.data-stat:nth-child(1)')[1]).text(),
-				'if': $($(this).find('.data-stat:nth-child(1)')[2]).text()
-			})
-		});
+}
+var duration = parseInt(json.Workout.Details.Duration)/60;
+var description = json.Workout.Details.WorkoutDescription;
+
+description += "\n\nhttps://www.trainerroad.com/cycling/workouts/" + json.Workout.Details.Id;
+
+var polyline = []; var lastPercent = 0;
+for (var i = 1; i < intervalData.length; i++) {
+	polyline.push([parseFloat(intervalData[i].Start/end), 0]);
+	polyline.push([parseFloat(intervalData[i].Start/end), intervalData[i].StartTargetPowerPercent/100]);
+	polyline.push([parseFloat(intervalData[i].End/end), intervalData[i].StartTargetPowerPercent/100]);
+	lastPercent = intervalData[i].StartTargetPowerPercent/100;
+}
+polyline.push([1,	0]);
+var data = {'exerciseLibraryId':libId ,'exerciseLibraryItemId': '','itemName': json.Workout.Details.WorkoutName ,'itemType':2 ,'workoutTypeId':2 ,'workoutType': '','distancePlanned': '','totalTimePlanned': duration ,'caloriesPlanned': parseInt(json.Workout.Details.Kj)*0.239006,'tssPlanned': json.Workout.Details.TSS ,'ifPlanned': parseInt(json.Workout.Details.IntensityFactor)/100 ,'velocityPlanned': '','energyPlanned': '','elevationGainPlanned': '','description': description ,'coachComments': '','exerciseLibraryItemFilters': '','code': '','structure': JSON.stringify({"structure":structure, "polyline": polyline,	"primaryLengthMetric":"duration",	"primaryIntensityMetric":"percentOfFtp"}),'fileAttachments': '','fromLegacy':false ,'iExerciseLibraryItemValue': '','exercises': '','attachmentFileInfos': '','isStructuredWorkout': '','libraryOwnerId': ''}
+var TPcode = ("var data = " + JSON.stringify(data) + '; fetch("https://tpapi.trainingpeaks.com/exerciselibrary/v1/libraries/' + libId + '/items", { ' + `method: 'POST', body: JSON.stringify(data), credentials:"include",headers: {'Content-Type': 'application/json'}}).then(res => res.json()).then(console.log)`);
 
 
-		/*extra workouts outside of bike + tips */
-		$(this).find('.plan-day').each(function (day) {
-			
-			if (plan[i][$(this).find('em').html().toLowerCase()] === undefined) {
-				plan[i][$(this).find('em').html().toLowerCase()] = [];
-			}
+var str = '<textarea id="tr2tp" cols=100 rows=20 style="z-index: 15000; position: absolute; top: 20px; left: 50%; width: 50%; height: 20%; margin-left: -25%;">' + TPcode + '</textarea>'; document.body.insertAdjacentHTML( 'beforeend', str ); 
 
-			if ($(this).prop('class').replace('plan-day ', '') === 'bike') {
+var repeat=true;
+while (repeat) {
+	if (document.getElementById('tr2tp').innerHTML) {
+		repeat = false;
+		setTimeout(function () {
+			document.getElementById('tr2tp').select(); document.execCommand('copy'); 
+			document.getElementById('tr2tp').outerHTMl='';
+			alert('paste your clipboard into TrainingPeaks console')
+		}, 1000);
+	}
+}
 
-				for (var j in plan[i][$(this).find('em').html().toLowerCase()]) {
-					if (plan[i][$(this).find('em').html().toLowerCase()][j].type === 'bike') {
-						plan[i][$(this).find('em').html().toLowerCase()][j].description += "\n\n" + $(this).find('span').text().replace($(this).find('span strong').html(), '')
-						break;
-					} 
-				}
-			} else {
-				var tss = 60;
-				if ($(this).prop('class').replace('plan-day ', '') === 'run' || $(this).prop('class').replace('plan-day ', '') === 'brick') {
-					if ($(this).find('span strong').html().indexOf('Recovery') !== -1 || $(this).find('span strong').html().indexOf('30min Base') !== -1 || $(this).find('span strong').html().indexOf('Transition') !== -1 ) {
-						tss = 25;
-					} else if ($(this).find('span strong').html().indexOf('Long') !== -1) {
-						tss = 120;
-					}
 
-					tss = tss + tss*i/100
-				} else if ($(this).prop('class').replace('plan-day ', '') === 'swim') {
-					tss = 20 * $(this).find('span strong').html().match(/\((.*)m\)/)[1]/1000
-				}
-
-				plan[i][$(this).find('em').html().toLowerCase()].push(
-				{
-					'type': $(this).prop('class').replace('plan-day ', ''),
-					'title': $(this).find('span strong').html(),
-					'tss': Math.round(tss),
-					'description': $(this).find('span').text().replace($(this).find('span strong').html(), ''),
-				});
-			}
-		
-		});
-
-		i++;
-
-	});
-
-//	console.log(plan);
-	console.log('var TRData = ' + JSON.stringify(plan))
-
-})();
+})
