@@ -34,7 +34,7 @@ This code allows you to copy trainer road workout into your training peaks accou
 7. I take no responsibility for hte script. use at will.
 8. No, I will not post Trainer Road plans here, this script is to make your life easier if you use both, not to get yourself a free training plan.
 9. If you want to make your life easier - create a bookmarklet with the code from step 3
-10. if you always import workouts to the same library, add `var libId=1354831; ` at the begining of the bookmarkled, right after `javascript:(function(){`.
+10. if you always import workouts to the same library, add `var libId=XXXX; ` at the begining of the bookmarkled, right after `javascript:(function(){`. (XXXX is your library ID)
 
 # Bugs and feature requests
 1. Sorry, works for me, use at will. Found a bug? Create a pull request. Feature request? Make it yourself, I'm busy training ;)
