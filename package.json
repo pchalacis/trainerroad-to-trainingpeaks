@@ -1,0 +1,15 @@
+{
+    "name": "tr2tp",
+    "version": "0.2.1",
+    "author": "Pawel Chalacis <pchalacis@gmail.com>",
+    "description": "TR plan & workout importer",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:pchalacis/trainerroad-to-trainingpeaks.git"
+    },
+    "dependencies": {
+        "q": "*",
+        "request-promise": "*",
+        "request": "*"
+    }
+}
