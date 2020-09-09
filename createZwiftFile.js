@@ -33,11 +33,6 @@ fetch(url, { credentials: "include" }).then(res => res.json())
             var lastElement = workoutElements[workoutElements.length - 1];
 
             var startFtp = firstElement.ftpPercent / 100;
-
-            if (lastElement.ftpPercent !== firstElement.ftpPercent) {
-                lastElement = workoutSeconds.find(e => e.seconds === endSecond) || lastElement;
-            }
-
             var endFtp = lastElement.ftpPercent / 100;
 
             if (startFtp === endFtp) {
